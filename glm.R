@@ -6,16 +6,18 @@ a<-read.csv("C:/use R/a/crx.data.data",sep=",")
 dim(data)
 names(data)
 table(data)
-boxplot(data)
 ###데이터 뽑기
 data.s=data[,c(2,3,8,9,11,14,15)]
 str(data.s)
-###데이터 구조 바꾸기s.factor(data.s$t)
+###데이터 구조 바꾸기
+y=as.factor(data.s$t)
 z=as.numeric(data.s$X30.83)
 m=as.numeric((data.s$X00202))
 x=(data.s[,c(-1,-4,-6)])
+head(data.s)
 data.y.s=cbind(x,y,z,m)
-###결측치 제거.s=na.omit(data.y.s)
+###결측치 제거하기
+data.na.s=na.omit(data.y.s)
 dim(data.na.s)
 is.na(data.na.s)
 665*(7/10)
@@ -31,13 +33,9 @@ summary(data.g)
 
 p=exp(-2.1623061+0.0764472*train$X0 +0.3020987*train$X1.25+0.4010907*train$X01+0.0003696*train$X0.1)/(1+exp(-2.1623061+0.0764472*train$X0 +0.3020987*train$X1.25+0.4010907*train$X01+0.0003696*train$X0.1))
 credit<-as.numeric(p>0.5)
-str(credit)
-data.f<-train+train$credit
-train[,c(credit)]
-rm(data.f)
 data.f<-data.frame(train,credit.1=c(credit))
 data.f
-###test 신용등급급
+###test 신용등급
 p.t=exp(-2.1623061+0.0764472*test$X0 +0.3020987*test$X1.25+0.4010907*test$X01+0.0003696*test$X0.1)/(1+exp(-2.1623061+0.0764472*test$X0 +0.3020987*test$X1.25+0.4010907*test$X01+0.0003696*test$X0.1))
 credit.1<-as.numeric(p.t>0.5)
 credit.1
